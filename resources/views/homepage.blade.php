@@ -149,7 +149,7 @@
     <!-- =========== integrations Section end =========== -->
 
     <!-- =========== Pricing Section Start =========== -->
-    {{-- <section class="xl:py-24 py-16">
+    <section class="xl:py-24 py-16">
         <div class="container" data-aos="fade-up" data-aos-duration="1500">
             <div class="text-center">
                 <span class="text-sm font-medium py-1 px-3 rounded-full text-primary bg-primary/10">Pricing</span>
@@ -165,7 +165,7 @@
             </div>
         </div>
 
-    </section> --}}
+    </section>
     <!-- =========== Pricing Section  End=========== -->
     
 

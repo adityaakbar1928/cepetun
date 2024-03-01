@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Penyedia jasa tunneling, layanan ip public, tunneling, vpn, game vpn, monitoring, jasa termurah" name="description" />
 
-    <!-- Vite App CSS -->
-    @vite('resources/css/app.css')
-
     <!-- Theme favicon -->
     <link rel="shortcut icon" href="#">
 
@@ -61,7 +58,14 @@
 
                 <!-- Login Button -->
                 <div class="hidden lg:flex items-center ms-3">
-                    <a href="#" target="_blank" class="bg-primary text-white px-4 py-2 rounded inline-flex items-center text-sm">Log In <span aria-hidden="true">&rarr;</span></a>
+                    <a href="/auth" target="_blank" class="bg-primary text-white px-4 py-2 rounded inline-flex items-center text-sm">
+                        @guest
+                            Login <span aria-hidden="true">&rarr;</span></a>
+                        @endguest
+                        @auth
+                            My Account <span aria-hidden="true">&rarr;</span></a>
+                        @endauth
+                        
                 </div>
 
                 <!-- Moblie Menu Toggle Button (Offcanvas Button) -->
@@ -113,11 +117,11 @@
 
             <!-- Login Button (Footer) -->
             <div class="p-6 flex items-center justify-center">
-                <a href="#" target="_blank" class="bg-primary w-full text-white p-3 rounded flex items-center justify-center text-sm">Log In <span aria-hidden="true">&rarr;</span></a>
+                <a href="/auth" target="_blank" class="bg-primary w-full text-white p-3 rounded flex items-center justify-center text-sm">Log In <span aria-hidden="true">&rarr;</span></a>
             </div>
             <!-- Register Button (Footer) -->
             <div class="p-6 flex items-center justify-center">
-                <a href="#" target="_blank" class="bg-stone-300 w-full text-white p-3 rounded flex items-center justify-center text-sm">Register <span aria-hidden="true">&rarr;</span></a>
+                <a href="/auth" target="_blank" class="bg-stone-300 w-full text-white p-3 rounded flex items-center justify-center text-sm">Register <span aria-hidden="true">&rarr;</span></a>
             </div>
         </div>
     </div>
