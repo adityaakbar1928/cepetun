@@ -4,18 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard - CepeTun</title>
+    <title>Topup - CepeTun</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
 
     <!-- page css -->
-    <link href="assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/admincustom.css" rel="stylesheet">
+    <link href="/assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/admincustom.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Core css -->
-    <link href="assets/css/app.min.css" rel="stylesheet">
+    <link href="/assets/css/app.min.css" rel="stylesheet">
 
 </head>
 
@@ -26,14 +26,14 @@
             <div class="header">
                 <div class="logo logo-dark">
                     <a href="index.html">
-                        <img src="assets/images/logo-dark.png" style="height:4rem" alt="Logo">
-                        <img class="logo-fold align-items-center" src="assets/images/logo-fold.png" style="height:4rem" alt="Logo">
+                        <img src="/assets/images/logo-dark.png" style="height:4rem" alt="Logo">
+                        <img class="logo-fold align-items-center" src="/assets/images/logo-fold.png" style="height:4rem" alt="Logo">
                     </a>
                 </div>
                 <div class="logo logo-white">
                     <a href="index.html">
-                        <img src="assets/images/logo-light.png" style="height:4rem" alt="Logo">
-                        <img class="logo-fold align-items-center" src="assets/images/logo-fold.png" style="height:4rem" alt="Logo">
+                        <img src="/assets/images/logo-light.png" style="height:4rem" alt="Logo">
+                        <img class="logo-fold align-items-center" src="/assets/images/logo-fold.png" style="height:4rem" alt="Logo">
                     </a>
                 </div>
                 <div class="nav-wrap">
@@ -154,11 +154,11 @@
                 <div class="side-nav-inner">
                     <ul class="side-nav-menu scrollable">
                         <li class="nav-item dropdown">
-                            <a href="">
+                            <a href="{{ route('dashboard') }}">
                                 <span class="icon-holder">
                                     <i class="anticon anticon-dashboard"></i>
                                 </span>
-                                <span class="title active" style="font-weight: bold">Dashboard</span>
+                                <span class="title" style="font-weight: bold">Dashboard</span>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
@@ -167,7 +167,7 @@
                                 <span class="icon-holder">
                                     <i class="anticon anticon-wallet"></i>
                                 </span>
-                                <span class="title" style="font-weight: bold">Topup Saldo</span>
+                                <span class="title active" style="font-weight: bold">Topup Saldo</span>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
@@ -238,66 +238,149 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <div class="avatar avatar-icon avatar-lg avatar-blue">
-                                            <i class="anticon anticon-profile"></i>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5>Topup Balance</h5>
+                                    </div>
+                                    <div class="m-t-30">
+                                        <div class="d-inline-block m-r-30">
+                                            <p class="m-b-0 d-flex align-items-center">
+                                                <span class="badge badge-primary badge-dot m-r-10"></span>
+                                                <span>Online</span>
+                                            </p>
                                         </div>
-                                        <div class="m-l-15">
-                                            <h3 class="m-b-0">3</h3>
-                                            <p class="m-b-0 text-muted">Tunnel</p>
+                                        <div class="d-inline-block">
+                                            <p class="m-b-0 d-flex align-items-center">
+                                                <span class="badge badge-blue badge-dot m-r-10"></span>
+                                                <span>Offline</span>
+                                            </p>
                                         </div>
+                                    </div>
+                                    <div class="m-t-50">
+                                        <canvas class="chart" style="height: 205px" id="sales-chart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <div class="avatar avatar-icon avatar-lg avatar-cyan">
-                                            <i class="anticon anticon-line-chart"></i>
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <p class="m-b-0 text-muted">Remaining Balance</p>
+                                                    <h2 class="m-b-0">$23,523</h2>
+                                                </div>
+                                                <span class="badge badge-pill badge-cyan font-size-12">
+                                                    <i class="anticon anticon-arrow-up"></i>
+                                                    <span class="font-weight-semibold m-l-5">6.71%</span>
+                                                </span>
+                                            </div>
+                                            <div class="m-t-40">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="badge badge-primary badge-dot m-r-10"></span>
+                                                        <span class="text-gray font-weight-semibold font-size-13">Monthly Goal</span>
+                                                    </div>
+                                                    <span class="text-dark font-weight-semibold font-size-13">70% </span>
+                                                </div>
+                                                <div class="progress progress-sm w-100 m-b-0 m-t-10">
+                                                    <div class="progress-bar bg-primary" style="width: 70%"></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="m-l-15">
-                                            <h3 class="m-b-0">12</h3>
-                                            <p class="m-b-0 text-muted">Your Order</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <p class="m-b-0 text-muted">Total Spend</p>
+                                                    <h2 class="m-b-0">$8,753</h2>
+                                                </div>
+                                                <span class="badge badge-pill badge-red font-size-12">
+                                                    <i class="anticon anticon-arrow-down"></i>
+                                                    <span class="font-weight-semibold m-l-5">3.26%</span>
+                                                </span>
+                                            </div>
+                                            <div class="m-t-40">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="badge badge-success badge-dot m-r-10"></span>
+                                                        <span class="text-gray font-weight-semibold font-size-13">Monthly Goal</span>
+                                                    </div>
+                                                    <span class="text-dark font-weight-semibold font-size-13">60% </span>
+                                                </div>
+                                                <div class="progress progress-sm w-100 m-b-0 m-t-10">
+                                                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <div class="avatar avatar-icon avatar-lg avatar-gold">
-                                            <i class="anticon anticon-dollar"></i>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <p class="m-b-0 text-muted">Active Tunnel</p>
+                                                    <h2 class="m-b-0">1,753</h2>
+                                                </div>
+                                                <span class="badge badge-pill badge-red font-size-12">
+                                                    <i class="anticon anticon-arrow-down"></i>
+                                                    <span class="font-weight-semibold m-l-5">2.71%</span>
+                                                </span>
+                                            </div>
+                                            <div class="m-t-40">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="badge badge-warning badge-dot m-r-10"></span>
+                                                        <span class="text-gray font-weight-semibold font-size-13">Monthly Goal</span>
+                                                    </div>
+                                                    <span class="text-dark font-weight-semibold font-size-13">45% </span>
+                                                </div>
+                                                <div class="progress progress-sm w-100 m-b-0 m-t-10">
+                                                    <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="m-l-15">
-                                            <h4 class="m-b-0">Rp. 20.000</h4>
-                                            <p class="m-b-0 text-muted">Balance</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <p class="m-b-0 text-muted">Expired Tunnel</p>
+                                                    <h2 class="m-b-0">236</h2>
+                                                </div>
+                                                <span class="badge badge-pill badge-gold font-size-12">
+                                                    <i class="anticon anticon-arrow-up"></i>
+                                                    <span class="font-weight-semibold m-l-5">N/A</span>
+                                                </span>
+                                            </div>
+                                            <div class="m-t-40">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="badge badge-secondary badge-dot m-r-10"></span>
+                                                        <span class="text-gray font-weight-semibold font-size-13">Monthly Goal</span>
+                                                    </div>
+                                                    <span class="text-dark font-weight-semibold font-size-13">50% </span>
+                                                </div>
+                                                <div class="progress progress-sm w-100 m-b-0 m-t-10">
+                                                    <div class="progress-bar bg-secondary" style="width: 50%"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <div class="avatar avatar-icon avatar-lg avatar-purple">
-                                            <i class="anticon anticon-user"></i>
-                                        </div>
-                                        <div class="m-l-15">
-                                            <h3 class="m-b-0">1</h3>
-                                            <p class="m-b-0 text-muted">Expiring Tunnel</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- Start List Tunnel -->
                     <div class="row">
@@ -404,15 +487,15 @@
 
     
     <!-- Core Vendors JS -->
-    <script src="assets/js/vendors.min.js"></script>
+    <script src="/assets/js/vendors.min.js"></script>
 
     <!-- page js -->
-    <script src="assets/vendors/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/pages/datatables.js"></script>
+    <script src="/assets/vendors/datatables/jquery.dataTables.min.js"></script>
+    <script src="/assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="/assets/js/pages/datatables.js"></script>
 
     <!-- Core JS -->
-    <script src="assets/js/app.min.js"></script>
+    <script src="/assets/js/app.min.js"></script>
 
 </body>
 

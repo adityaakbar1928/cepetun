@@ -10,4 +10,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.dashboard');
     }
+
+    public function topupsaldo()
+    {
+        return view('dashboard.topup');
+    }
 }

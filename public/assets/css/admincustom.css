@@ -1,3 +1,14 @@
-.active{
+.active {
     color: #178cbb;
+}
+
+.news {
+    width: 160px;
+}
+
+.news-scroll a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+    color: rgb(234, 0, 255);
 }

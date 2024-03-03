@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\VerifyemailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::get('/dashboard/actionlogout', [AuthController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
-Route::get('/auth', [AuthController::class, 'auth'])->name('auth');
-Route::post('/auth/login', [AuthController::class, 'actionlogin'])->name('actionlogin');
-Route::post('/auth/register', [AuthController::class, 'actionregister'])->name('actionregister');
+
+Route::controller(DashboardController::class)->group(function() {
+    Route::get('/dashboard', 'index')->name('dashboard')->middleware('auth', 'verified');
+    Route::get('/dashboard/topup', 'topupsaldo')->name('topupsaldo')->middleware('auth', 'verified');
+});
+
+Route::controller(AuthController::class)->group(function() {
+    Route::get('/auth', 'auth')->name('auth');
+    Route::get('/dashboard/actionlogout', 'actionlogout')->name('actionlogout')->middleware('auth');
+    Route::post('/auth/login', 'actionlogin')->name('actionlogin');
+    Route::post('/auth/register', 'actionregister')->name('actionregister');
+});
+
+Route::controller(VerifyemailController::class)->group(function() {
+    Route::get('/auth/verifyemail', 'notice')->name('verification.notice');
+    Route::get('/auth/verifyemail/{id}/{hash}', 'verify')->name('verification.verify');
+    Route::post('/auth/verifyemail/resend', 'resend')->name('verification.resend');
+});

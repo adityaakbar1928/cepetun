@@ -10,8 +10,32 @@
 </head>
 
 <body>
+    @if (session('message'))
+            <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <div class="alert success">
+                    <span class="alertText">{{ session('message') }}<span class="alertClose"></i></span>
+                </div>
+            </label>
+        @endif
+        @if (session('error'))
+            <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <div class="alert error">
+                    <span class="alertText">Error: {{ session('error') }}<span class="alertClose"></span>
+                </div>
+            </label>
+        @endif
+        @if (session('verifymessage'))
+            <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <div class="alert error" id="verifyemail">
+                    <span class="alertText">{{ session('verifymessage') }}<span class="alertClose"></span>
+                </div>
+            </label>
+        @endif
     <div class="container" id="container">
-        <div class="form-container sign-up">
+        <div class="form-container sign-up" id="reg">
             <form action="{{ route('actionregister') }}" method="POST">
                 @csrf
                 <h1>Create Account</h1>
@@ -27,23 +51,11 @@
                 <input type="password" placeholder="Password" name="password">
                 <button type="submit">Register</button>
             </form>
-            @if(session('message'))
-            <div role="alert" class="alert alert-success">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>{{ session('message') }}</span>
-            </div>
-            @endif
         </div>
-        <div class="form-container sign-in">
+        <div class="form-container sign-in" id="log">
             <form action="{{ route('actionlogin') }}" method="POST">
                 @csrf
                 <h1>Sign In</h1>
-                <label>
-                    <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-                    <div class="alert error">
-                        <span class="alertText">Error Test<span class="alertClose">X</span>
-                    </div>
-                </label>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
@@ -56,12 +68,6 @@
                 <a href="#">Forget Your Password?</a>
                 <button type="submit">Log In</button>
             </form>
-            @if (session('error'))
-            <div role="alert" class="alert alert-error">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>Error! {{ session('error') }}</span>
-            </div>
-            @endif
         </div>
         <div class="toggle-container">
             <div class="toggle">
