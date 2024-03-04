@@ -23,6 +23,7 @@ Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::controller(DashboardController::class)->group(function() {
     Route::get('/dashboard', 'index')->name('dashboard')->middleware('auth', 'verified');
     Route::get('/dashboard/topup', 'topupsaldo')->name('topupsaldo')->middleware('auth', 'verified');
+    Route::get('/dashboard/tunnel/remote', 'tunnelremote')->name('tunnelremote')->middleware('auth', 'verified');
 });
 
 Route::controller(AuthController::class)->group(function() {

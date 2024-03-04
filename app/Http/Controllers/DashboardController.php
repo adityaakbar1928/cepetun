@@ -15,4 +15,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.topup');
     }
+
+    public function tunnelremote()
+    {
+        return view('dashboard.tunnelremote');
+    }
 }
